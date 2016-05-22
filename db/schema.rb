@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20160522102416) do
 
   create_table "news", force: :cascade do |t|
+    t.string   "agency"
     t.string   "remote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

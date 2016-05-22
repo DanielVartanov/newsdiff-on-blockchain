@@ -2,7 +2,7 @@ require_relative 'application'
 
 Agencies::Knews.new.tap do |agency|
   agency.news.each do |news_data|
-    news = News.find_or_create_by! remote_id: news_data.remote_id
+    news = News.find_or_create_by! agency: news_data.agency, remote_id: news_data.remote_id
 
     unless news.snapshots.exists? checksum: news_data.checksum
       news.snapshots.create! checksum: news_data.checksum,
