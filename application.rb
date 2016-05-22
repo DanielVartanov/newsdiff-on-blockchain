@@ -8,7 +8,19 @@ require_relative 'app/news'
 require_relative 'app/snapshot'
 require_relative 'app/news_data'
 require_relative 'app/agencies/agency'
+
+require_relative 'app/agencies/khabar'
+require_relative 'app/agencies/azattyq'
+
 require_relative 'app/agencies/knews'
+require_relative 'app/agencies/azattyk'
+require_relative 'app/agencies/kabar'
+require_relative 'app/agencies/kg24'
+require_relative 'app/agencies/kloop'
+require_relative 'app/agencies/kyrtag'
+require_relative 'app/agencies/tazabek'
+require_relative 'app/agencies/vb'
+require_relative 'app/agencies/zanoza'
 
 environment = ENV['ENVIRONMENT'] || 'development'
 

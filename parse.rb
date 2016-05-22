@@ -1,6 +1,18 @@
 require_relative 'application'
 
-Agencies::Knews.new.tap do |agency|
+agencies = [Agencies::Khabar.new,
+            Agencies::Azattyq.new,
+            Agencies::Knews.new,
+            Agencies::Azattyk.new,
+            Agencies::Kabar.new,
+            Agencies::Kg24.new,
+            Agencies::Kloop.new,
+            Agencies::Kyrtag.new,
+            Agencies::Tazabek.new,
+            Agencies::Vb.new,
+            Agencies::Zanoza.new]
+
+agencies.each do |agency|
   agency.news.each do |news_data|
     news = News.find_or_create_by! agency: news_data.agency, remote_id: news_data.remote_id
 
