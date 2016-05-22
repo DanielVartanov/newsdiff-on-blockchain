@@ -9,5 +9,7 @@ require_relative 'app/news_data'
 require_relative 'app/agencies/agency'
 require_relative 'app/agencies/knews'
 
+environment = ENV['ENVIRONMENT'] || 'development'
+
 ActiveRecord::Base.logger = Logger.new(STDOUT)
-ActiveRecord::Base.establish_connection YAML::load(File.open('db/config.yml'))['development']
+ActiveRecord::Base.establish_connection YAML::load(File.open('db/config.yml'))[environment]
