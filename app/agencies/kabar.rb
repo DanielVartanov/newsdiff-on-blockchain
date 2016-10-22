@@ -4,14 +4,14 @@ module Agencies
 
     def news
       fetch_items.map do |item|
-        guid = item.xpath('guid').text
         title = item.xpath('title').text
         link = item.xpath('link').text
+        remote_id = link
         published_at = DateTime.parse(item.xpath('pubDate').text)
         author = ''
         content = item.xpath('description').text
 
-        NewsData.new 'kabar', guid, title, link, published_at, author, content
+        NewsData.new 'kabar', remote_id, title, link, published_at, author, content
       end
     end
 
