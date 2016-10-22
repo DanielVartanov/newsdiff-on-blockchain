@@ -6,7 +6,7 @@ require 'differ'
 Differ.format = :color
 Diffy::Diff.default_format = :color
 
-ActiveRecord::Base.logger.level = :info
+ActiveRecord::Base.logger.level = Logger::INFO
 
 def print_series_of_line_diffs(revisions)
   revisions.each_cons(2) do |left, right|
