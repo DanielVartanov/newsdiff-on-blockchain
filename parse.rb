@@ -1,7 +1,6 @@
 require_relative 'application'
 
-agencies = [Agencies::Khabar.new,
-            Agencies::Azattyq.new,
+agencies = [Agencies::Azattyq.new,
             Agencies::Knews.new,
             Agencies::Azattyk.new,
             Agencies::Kabar.new,
