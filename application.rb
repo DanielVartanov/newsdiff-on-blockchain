@@ -25,4 +25,5 @@ require_relative 'app/agencies/zanoza'
 environment = ENV['ENVIRONMENT'] || 'development'
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
+ActiveRecord::Base.logger.level = (environment == 'development') ? Logger::DEBUG : Logger::INFO
 ActiveRecord::Base.establish_connection YAML::load(ERB.new(File.read('db/config.yml')).result)[environment]
