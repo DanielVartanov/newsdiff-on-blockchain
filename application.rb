@@ -21,6 +21,7 @@ require_relative 'app/agencies/kyrtag'
 require_relative 'app/agencies/tazabek'
 require_relative 'app/agencies/vb'
 require_relative 'app/agencies/zanoza'
+require_relative 'app/agencies/sputnik'
 
 environment = ENV['ENVIRONMENT'] || 'development'
 

@@ -9,7 +9,8 @@ agencies = [Agencies::Azattyq.new,
             Agencies::Kyrtag.new,
             Agencies::Tazabek.new,
             Agencies::Vb.new,
-            Agencies::Zanoza.new]
+            Agencies::Zanoza.new,
+            Agencies::Sputnik.new]
 
 agencies.each do |agency|
   agency.news.each do |news_data|
