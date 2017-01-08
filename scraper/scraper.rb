@@ -27,4 +27,7 @@ environment = ENV['ENVIRONMENT'] || 'development'
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 ActiveRecord::Base.logger.level = (environment == 'development') ? Logger::DEBUG : Logger::INFO
-ActiveRecord::Base.establish_connection YAML::load(ERB.new(File.read(File.join(__dir__, 'db/config.yml'))).result)[environment]
+
+ROOT_DIRECTORY = __dir__
+
+ActiveRecord::Base.establish_connection YAML::load(ERB.new(File.read(File.join(ROOT_DIRECTORY, 'db/config.yml'))).result)[environment]
