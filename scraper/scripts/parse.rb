@@ -1,4 +1,6 @@
-require_relative 'application'
+#!/usr/bin/env ruby
+
+require_relative '../scraper'
 
 agencies = [Agencies::Azattyq.new,
             Agencies::Knews.new,
