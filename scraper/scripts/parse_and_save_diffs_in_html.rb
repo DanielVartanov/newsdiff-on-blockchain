@@ -5,8 +5,6 @@ require 'differ'
 
 Differ.format = :html
 
-#ActiveRecord::Base.logger.level = Logger::INFO
-
 def formatted_datetime(datetime)
   datetime.strftime '%-d/%-m %H:%M'
 end
