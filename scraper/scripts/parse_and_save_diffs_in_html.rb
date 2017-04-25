@@ -58,4 +58,6 @@ News.edited.find_each do |news|
   end
 end
 
-puts html
+File.open("data/index.html", "w") do |f|
+  f.write(html)
+end
