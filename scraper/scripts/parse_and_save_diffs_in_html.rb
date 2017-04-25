@@ -12,9 +12,9 @@ end
 def print_series_of_word_diffs(revisions)
   revisions.each_cons(2) do |left, right|
     unless left.title == right.title
-      puts "[#{formatted_datetime(right.created_at)}] #{Differ.diff_by_word(right.title, left.title)} <br>"
+      return "[#{formatted_datetime(right.created_at)}] #{Differ.diff_by_word(right.title, left.title)} <br>"
     else
-      puts "[#{formatted_datetime(right.created_at)}] Изменены другие данные <br>"
+      return "[#{formatted_datetime(right.created_at)}] Изменены другие данные <br>"
     end
   end
 end
@@ -48,11 +48,14 @@ agencies.each do |agency|
   end
 end
 
+html = ""
+
 News.edited.find_each do |news|
   if news.title_edited?
-    puts '-' * 80
-    puts "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от [#{formatted_datetime(news.created_at)}] #{news.snapshots.first.url}</p>"
-
-    print_series_of_word_diffs(news.snapshots)
+    html += '-' * 80
+    html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от [#{formatted_datetime(news.created_at)}] #{news.snapshots.first.url}</p>"
+    html += print_series_of_word_diffs(news.snapshots)
   end
 end
+
+puts html
