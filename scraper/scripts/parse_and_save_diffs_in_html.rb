@@ -32,66 +32,72 @@ agencies = [Agencies::Azattyq.new,
             Agencies::Zanoza.new,
             Agencies::Sputnik.new]
 
-agencies.each do |agency|
-  agency.news.each do |news_data|
-    news = News.find_or_create_by! agency: news_data.agency, remote_id: news_data.remote_id
 
-    unless news.snapshots.exists? checksum: news_data.checksum
-      news.snapshots.create! checksum: news_data.checksum,
-                             url: news_data.url,
-                             title: news_data.title,
-                             author: news_data.author,
-                             published_at: news_data.published_at,
-                             content: news_data.content
+loop do
+  agencies.each do |agency|
+    agency.news.each do |news_data|
+      news = News.find_or_create_by! agency: news_data.agency, remote_id: news_data.remote_id
+
+      unless news.snapshots.exists? checksum: news_data.checksum
+        news.snapshots.create! checksum: news_data.checksum,
+                               url: news_data.url,
+                               title: news_data.title,
+                               author: news_data.author,
+                               published_at: news_data.published_at,
+                               content: news_data.content
+      end
     end
   end
-end
 
-html = '
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0">
-<meta name="format-detection" content="telephone=no">
+  html = '
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0">
+  <meta name="format-detection" content="telephone=no">
 
-<style type="text/css">
-	body{
-		max-width: 1200px;
-		margin: 30px auto;
-		width: 100%;
-		font-family: Arial, sans-serif;
-		background: #231f20;
-		color: #918f90;
-		padding: 0 20px;
-		box-sizing: border-box;
-		overflow: hidden;
-		font-size: 16px;
-		line-height: 1.4;
-		color: #ccc;
-	}
-	del{
-		color: #ec2227;
-	}
-	ins{
-		color: #13af13;
-	}
-	hr{
-		margin-top: 20px;
-		opacity: .2;
-	}
-	p{
-		color: #918f90;
-		white-space: pre-line;
-    	word-wrap: break-word;
-	}
-</style>'
+  <style type="text/css">
+    body{
+      max-width: 1200px;
+      margin: 30px auto;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background: #231f20;
+      color: #918f90;
+      padding: 0 20px;
+      box-sizing: border-box;
+      overflow: hidden;
+      font-size: 16px;
+      line-height: 1.4;
+      color: #ccc;
+    }
+    del{
+      color: #ec2227;
+    }
+    ins{
+      color: #13af13;
+    }
+    hr{
+      margin-top: 20px;
+      opacity: .2;
+    }
+    p{
+      color: #918f90;
+      white-space: pre-line;
+        word-wrap: break-word;
+    }
+  </style>'
 
-News.edited.find_each do |news|
-  if news.title_edited?
-    html += '<hr>'
-    html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от [#{formatted_datetime(news.created_at)}] #{news.snapshots.first.url}</p>"
-    html += print_series_of_word_diffs(news.snapshots)
+  News.edited.find_each do |news|
+    if news.title_edited?
+      html += '<hr>'
+      html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от [#{formatted_datetime(news.created_at)}] #{news.snapshots.first.url}</p>"
+      html += print_series_of_word_diffs(news.snapshots)
+    end
   end
-end
 
-File.open('data/index.html', 'w') do |f|
-  f.write(html)
+  File.open('data/index.html', 'w') do |f|
+    f.write(html)
+  end
+
+  sleep 60
+
 end
