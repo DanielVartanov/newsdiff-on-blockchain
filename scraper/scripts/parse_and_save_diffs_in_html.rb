@@ -85,7 +85,7 @@ loop do
     }
   </style>'
 
-  News.edited.find_each do |news|
+  News.edited.order(created_at: :desc).each do |news|
     if news.title_edited?
       html += '<hr>'
       html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от [#{formatted_datetime(news.created_at)}] #{news.snapshots.first.url}</p>"
@@ -97,6 +97,6 @@ loop do
     f.write(html)
   end
 
-  sleep 60
+  sleep 5
 
 end
