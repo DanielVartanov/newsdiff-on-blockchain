@@ -64,7 +64,6 @@ loop do
       color: #918f90;
       padding: 0 20px;
       box-sizing: border-box;
-      overflow: hidden;
       font-size: 16px;
       line-height: 1.4;
       color: #ccc;
