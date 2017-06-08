@@ -97,6 +97,6 @@ loop do
     f.write(html)
   end
 
-  sleep 5
+  sleep 60
 
 end
