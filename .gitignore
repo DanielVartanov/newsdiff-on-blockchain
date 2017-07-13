@@ -3,3 +3,5 @@
 /scraper/db/development.sqlite3
 /scraper/scripts/data/index.html
 /scraper/scripts/.DS_Store
+/scraper/data
+.idea/
