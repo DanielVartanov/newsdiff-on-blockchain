@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    ports:
+     - "8080:80"
+    volumes:
+     - /opt/docker/newsdiff/:/usr/share/nginx/html
+    image: "nginx"
+  scraper:
+    build: .
+    volumes:
+     - /opt/docker/newsdiff/:/usr/src/app/data
