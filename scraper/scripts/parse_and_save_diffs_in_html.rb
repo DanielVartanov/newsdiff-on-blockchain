@@ -35,8 +35,8 @@ agencies = [Agencies::Azattyq.new,
 
 loop do
   agencies.each do |agency|
-    agency.news.each do |news_data|
-      begin
+    begin
+      agency.news.each do |news_data|
         news = News.find_or_create_by! agency: news_data.agency, remote_id: news_data.remote_id
         unless news.snapshots.exists? checksum: news_data.checksum
           news.snapshots.create! checksum: news_data.checksum,
@@ -46,10 +46,10 @@ loop do
                                  published_at: news_data.published_at,
                                  content: news_data.content
         end
-      rescue Exception => e
-        puts e.message
-        puts e.backtrace.inspect
       end
+    rescue Exception => e
+      puts e.message
+      puts e.backtrace.inspect
     end
   end
 
