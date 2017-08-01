@@ -54,48 +54,129 @@ loop do
   end
 
   html = '
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0">
-  <meta name="format-detection" content="telephone=no">
+  <html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0">
+      <meta name="format-detection" content="telephone=no">
+      <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 
-  <style type="text/css">
-    body{
-      max-width: 1200px;
-      margin: 30px auto;
-      width: 100%;
-      font-family: Arial, sans-serif;
-      background: #231f20;
-      color: #918f90;
-      padding: 0 20px;
-      box-sizing: border-box;
-      font-size: 16px;
-      line-height: 1.4;
-      color: #ccc;
-    }
-    del{
-      color: #ec2227;
-    }
-    ins{
-      color: #13af13;
-    }
-    hr{
-      margin-top: 20px;
-      opacity: .2;
-    }
-    p{
-      color: #918f90;
-      white-space: pre-line;
-        word-wrap: break-word;
-    }
-  </style>'
+      <style type="text/css">
+          * {
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0;
+          }
+          body {
+              width: 100%;
+              color: #c5c5c5;
+              background: #2e2e2e;
+              box-sizing: border-box;
+              padding-top: 60px;
+              font-size: 14px;
+              line-height: 1.4;
+              font-family: "Noto Sans", sans-serif;
+          }
+          del {
+              color: #C62828;
+          }
+          ins {
+              color: #8BC34A;
+          }
+          hr {
+              margin-top: 20px;
+              opacity: .5;
+          }
+          p {
+              color: #918f90;
+              white-space: pre-line;
+              word-wrap: break-word;
+              margin-top: 0;
+          }
+          a {
+              color: #dddddd;
+              transition: all .4s;
+          }
+          a:hover{
+              transition: all .4s;
+              color: #80D8FF;
+          }
+          .logo {
+              color: #9E9E9E;
+              font-size: 28px;
+              font-weight: 900;
+              text-decoration: none;
+          }
+          .news--item {
+              padding: 30px 0;
+              border-bottom: 1px solid #eee;
+          }
+          header {
+              border-bottom: 1px solid #dddddd;
+              width: 100%;
+              position: fixed;
+              top: 0;
+              left: 0;
+              background: #272727;
+          }
+          header section {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              max-width: 1160px;
+              margin: 10px auto;
+          }
+          .nav {
+              /*display: flex;*/
+              display: none;
+              justify-content: space-between;
+              list-style: none;
+              margin: 0;
+          }
+          .nav li {
+              margin: 0 0 0 40px;
+          }
+          .nav a {
+              font-weight: 100;
+              text-decoration: none;
+              color: #eee;
+          }
+          .nav a:hover {
+              color: #80D8FF;
+              transition: all .4s;
+          }
+          .date{
+              color: #fff;
+          }
+          main {
+              max-width: 1200px;
+              margin: 30px auto;
+              padding: 0 20px;
+          }
+      </style>
+  </head>
+  <body>
+  <a href="https://github.com/DanielVartanov/newsdiff-on-blockchain"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 99;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>  
+  <header>
+      <section>
+          <a class="logo" href="/">NEWSDIFF.KG</a>
+      </section>
+  </header>
+  <main>
+      <h1>Архив новостей</h1>
+'
 
   News.edited.order(created_at: :desc).each do |news|
     if news.title_edited?
-      html += '<hr>'
-      html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от [#{formatted_datetime(news.created_at)}] #{news.snapshots.first.url}</p>"
+      html += '<div class="news--item">'
+      html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от <span> [#{formatted_datetime(news.created_at)}]</span> "
+      html += "<a href='#{news.snapshots.first.url}'>#{news.snapshots.first.url}</a></p>"
       html += print_series_of_word_diffs(news.snapshots)
+      html += '</div>'
     end
   end
+
+  html += '</main></body></html>'
 
   File.open('data/index.html', 'w') do |f|
     f.write(html)
