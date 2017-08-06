@@ -59,6 +59,9 @@ loop do
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=0">
       <meta name="format-detection" content="telephone=no">
+      <meta name="title" content="Newsdiff">
+      <meta name="description" content="Detects edited news, stores proof on blockchain">
+
       <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 
       <style type="text/css">
@@ -102,10 +105,14 @@ loop do
               color: #80D8FF;
           }
           .logo {
-              color: #9E9E9E;
-              font-size: 28px;
+              color: #fff;
+              font-size: 32px;
               font-weight: 900;
               text-decoration: none;
+          }
+          .logo-text{
+              color: #ffffff;
+              font-size: 16px;
           }
           .news--item {
               padding: 30px 0;
@@ -125,6 +132,32 @@ loop do
               align-items: center;
               max-width: 1160px;
               margin: 10px auto;
+          }
+          @media screen and (max-width: 1200px){
+              header{
+                  padding: 0 20px;
+              }
+          }
+          @media screen and (max-width: 768px){
+              body{
+                  padding-top: 130px;
+              }
+              header section {
+                  flex-direction: column;
+                  text-align: center;
+              }
+              .logo{
+                  font-size: 26px;
+              }
+              .logo-text{
+                  margin-top: 15px;
+                  margin-bottom: 15px;
+              }
+          }
+          @media screen and (max-width: 545px){
+              .git--share img{
+                  width: 90px;
+              }
           }
           .nav {
               /*display: flex;*/
@@ -153,13 +186,21 @@ loop do
               margin: 30px auto;
               padding: 0 20px;
           }
+          .news--item a{
+              display: block;
+              padding: 20px 0;
+              line-height: 1;
+          }
       </style>
   </head>
   <body>
-  <a href="https://github.com/DanielVartanov/newsdiff-on-blockchain"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 99;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>  
+  <a class="git--share" href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 99;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
   <header>
       <section>
           <a class="logo" href="/">NEWSDIFF.KG</a>
+          <div class="logo-text">
+              Detects edited news, stores proof on blockchain
+          </div>
       </section>
   </header>
   <main>
