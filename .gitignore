@@ -5,3 +5,4 @@
 /scraper/scripts/.DS_Store
 /scraper/data
 .idea/
+.env
