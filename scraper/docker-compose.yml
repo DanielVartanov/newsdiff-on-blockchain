@@ -1,12 +1,13 @@
-version: '2'
+version: '3'
 services:
   web:
     ports:
-     - "8080:80"
+     - "${NEWSDIFF_NGINX_PORT}:80"
     volumes:
      - /opt/docker/newsdiff/:/usr/share/nginx/html
     image: "nginx"
   scraper:
     build: .
+    restart: always    
     volumes:
      - /opt/docker/newsdiff/:/usr/src/app/data
