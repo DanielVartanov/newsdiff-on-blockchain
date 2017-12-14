@@ -25,6 +25,8 @@ require_relative 'app/agencies/sputnik'
 
 environment = ENV['ENVIRONMENT'] || 'development'
 
+puts "============++++++++========" + environment
+
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 ActiveRecord::Base.logger.level = (environment == 'development') ? Logger::DEBUG : Logger::INFO
 
