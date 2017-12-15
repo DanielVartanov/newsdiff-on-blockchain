@@ -11,5 +11,6 @@ services:
     restart: always    
     environment:
      - ENVIRONMENT=${ENVIRONMENT}
+     - RAILS_ENV=${RAILS_ENV}     
     volumes:
      - /opt/docker/newsdiff/:/usr/src/app/data
