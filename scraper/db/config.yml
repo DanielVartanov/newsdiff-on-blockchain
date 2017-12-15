@@ -1,9 +1,11 @@
 development:
   adapter: sqlite3
-  database: <%= File.join(ROOT_DIRECTORY, '../data/development.sqlite3') %>
+  database: <%= File.join(ROOT_DIRECTORY, './data/development.sqlite3') %>
   pool: 5
   timeout: 5000
 
-production:
-  url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV['DB_POOL'] %>
+production: #THIS IS FOR LOGGER ONLY
+  adapter: sqlite3
+  database: <%= File.join(ROOT_DIRECTORY, './data/production.sqlite3') %>
+  pool: 5
+  timeout: 5000

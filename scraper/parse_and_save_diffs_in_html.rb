@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../scraper'
+require_relative './scraper'
 require 'differ'
 
 Differ.format = :html

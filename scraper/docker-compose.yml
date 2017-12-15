@@ -9,5 +9,7 @@ services:
   scraper:
     build: .
     restart: always    
+    environment:
+     - ENVIRONMENT=${ENVIRONMENT}
     volumes:
      - /opt/docker/newsdiff/:/usr/src/app/data
