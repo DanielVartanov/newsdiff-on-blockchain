@@ -8,7 +8,7 @@ services:
     image: "nginx"
   scraper:
     build: .
-    restart: always    
+    restart: always
     environment:
      - ENVIRONMENT=${ENVIRONMENT}
      - RAILS_ENV=${RAILS_ENV}     
