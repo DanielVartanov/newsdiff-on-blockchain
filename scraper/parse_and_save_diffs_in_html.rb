@@ -51,6 +51,7 @@ loop do
       puts e.message
       puts e.backtrace.inspect
     end
+    GC.start
   end
 
   html = '
@@ -208,7 +209,8 @@ loop do
       <h1>Архив новостей</h1>
 '
 
-  News.edited.order(created_at: :desc).each do |news|
+  edited_news = News.edited.order(created_at: :desc)
+  edited_news.each do |news|
     if news.title_edited?
       html += '<div class="news--item">'
       html += "<p>Новость #{news.id} из агенства #{news.agency.capitalize} от <span> [#{formatted_datetime(news.created_at)}]</span> "
@@ -217,7 +219,8 @@ loop do
       html += '</div>'
     end
   end
-
+  edited_news = nil
+  GC.start
   html += '</main></body></html>'
 
   File.open('data/index.html', 'w') do |f|
