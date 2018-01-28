@@ -70,10 +70,10 @@ loop do
   edited_news = nil
   GC.start
 
-  renderer = ERB.new(File.read('templates/index.html.erb'))
+  renderer = ERB.new(File.read('templates/index.html.erb', encoding: 'utf-8'))
 
   File.open('data/index.html', 'w') do |f|
-    f.write(renderer.result())
+    f.write(renderer.result(binding))
   end
 
   sleep 60
