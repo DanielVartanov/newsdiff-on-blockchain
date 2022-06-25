@@ -31,7 +31,7 @@ GEM
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     differ (0.1.2)
-    diffy (3.4.0)
+    diffy (3.4.1)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.10.0)
